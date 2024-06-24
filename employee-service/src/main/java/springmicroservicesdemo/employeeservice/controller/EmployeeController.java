@@ -3,10 +3,7 @@ package springmicroservicesdemo.employeeservice.controller;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import springmicroservicesdemo.employeeservice.dto.EmployeeDto;
 import springmicroservicesdemo.employeeservice.service.EmployeeService;
 
@@ -19,7 +16,13 @@ public class EmployeeController {
 
     @PostMapping
     public ResponseEntity<EmployeeDto> saveEmployee(@RequestBody EmployeeDto employeeDto) {
-        EmployeeDto savedEmployee = employeeService.saveEmployee(employeeDto);
-        return new ResponseEntity<EmployeeDto>(savedEmployee, HttpStatus.CREATED);
+        EmployeeDto savedEmployeeDto = employeeService.saveEmployee(employeeDto);
+        return new ResponseEntity<EmployeeDto>(savedEmployeeDto, HttpStatus.CREATED);
+    }
+
+    @GetMapping("{employeeId}")
+    public ResponseEntity<EmployeeDto> getEmployee(@PathVariable Long employeeId) {
+        EmployeeDto employeeDto = employeeService.getEmployeeById(employeeId);
+        return new ResponseEntity<EmployeeDto>(employeeDto, HttpStatus.OK);
     }
 }
