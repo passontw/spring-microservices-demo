@@ -1,8 +1,9 @@
 package springmicroservicesdemo.employeeservice.service;
 
+import springmicroservicesdemo.employeeservice.dto.APIResponseDto;
 import springmicroservicesdemo.employeeservice.dto.EmployeeDto;
 
 public interface EmployeeService {
     EmployeeDto saveEmployee(EmployeeDto employeeDto);
-    EmployeeDto getEmployeeById(Long employeeId);
+    APIResponseDto getEmployeeById(Long employeeId);
 }
