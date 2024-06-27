@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import springmicroservicesdemo.departmentservice.dto.DepartmentDto;
 import springmicroservicesdemo.departmentservice.entity.Department;
+import springmicroservicesdemo.departmentservice.mapper.AutoDepartmentMapper;
 import springmicroservicesdemo.departmentservice.repository.DepartmentRepository;
 import springmicroservicesdemo.departmentservice.service.DepartmentService;
 
@@ -15,35 +16,16 @@ public class DepartmentServiceImpl implements DepartmentService {
 
     @Override
     public DepartmentDto saveDepartment(DepartmentDto departmentDto) {
-        Department department = new Department(
-                departmentDto.getId(),
-                departmentDto.getDepartmentName(),
-                departmentDto.getDepartmentDescription(),
-                departmentDto.getDepartmentCode()
-        );
+        Department department = AutoDepartmentMapper.MAPPER.mapDepartmentDtoToDepartment(departmentDto);
 
         Department savedDepartment = departmentRepository.save(department);
 
-        DepartmentDto savedDepartmentDto = new DepartmentDto(
-                savedDepartment.getId(),
-                savedDepartment.getDepartmentName(),
-                savedDepartment.getDepartmentDescription(),
-                savedDepartment.getDepartmentCode()
-        );
-        return savedDepartmentDto;
+        return AutoDepartmentMapper.MAPPER.mapDepartmentToDepartmentDto(savedDepartment);
     }
 
     @Override
     public DepartmentDto getDepartmentByDepartmentCode(String departmentCode) {
         Department department = departmentRepository.findByDepartmentCode(departmentCode);
-
-        DepartmentDto departmentDto = new DepartmentDto(
-                department.getId(),
-                department.getDepartmentName(),
-                department.getDepartmentDescription(),
-                department.getDepartmentCode()
-        );
-
-        return departmentDto;
+        return AutoDepartmentMapper.MAPPER.mapDepartmentToDepartmentDto(department);
     }
 }
