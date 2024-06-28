@@ -3,10 +3,7 @@ package springmicroservicesdemo.organizationservice.controller;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import springmicroservicesdemo.organizationservice.dto.OrganizationDto;
 import springmicroservicesdemo.organizationservice.service.OrganizationService;
 
@@ -18,8 +15,14 @@ public class OrganizationController {
 
 
     @PostMapping
-    public ResponseEntity<OrganizationDto> saveEmployee(@RequestBody OrganizationDto organizationDto) {
+    public ResponseEntity<OrganizationDto> saveOrganization(@RequestBody OrganizationDto organizationDto) {
         OrganizationDto savedOrganizationDto = organizationService.saveOrganization(organizationDto);
         return new ResponseEntity<OrganizationDto>(savedOrganizationDto, HttpStatus.CREATED);
+    }
+
+    @GetMapping("{organizationId}")
+    public ResponseEntity<OrganizationDto> getOrganization(@PathVariable Long organizationId) {
+        OrganizationDto savedOrganizationDto = organizationService.getOrganization(organizationId);
+        return new ResponseEntity<OrganizationDto>(savedOrganizationDto, HttpStatus.OK);
     }
 }
