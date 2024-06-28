@@ -45,10 +45,10 @@ public class EmployeeServiceImpl implements EmployeeService {
 
         EmployeeDto employeeDto = AutoEmployeeMapper.MAPPER.mapEmployeeToEmployeeDto(employee);
 
-        DepartmentDto departmentDto = apiClient.getDepartment(employee.getDepartmentCode());
+//        DepartmentDto departmentDto = apiClient.getDepartment(employee.getDepartmentCode());
         APIResponseDto apiResponseDto = new APIResponseDto();
         apiResponseDto.setEmployee(employeeDto);
-        apiResponseDto.setDepartment(departmentDto);
+        apiResponseDto.setDepartment(null);
 
         return apiResponseDto;
     }
