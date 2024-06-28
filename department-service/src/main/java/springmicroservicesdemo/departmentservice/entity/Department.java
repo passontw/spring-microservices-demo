@@ -19,5 +19,6 @@ public class Department {
     private Long id;
     private String departmentName;
     private String departmentDescription;
+    @Column(nullable = false)
     private String departmentCode;
 }
