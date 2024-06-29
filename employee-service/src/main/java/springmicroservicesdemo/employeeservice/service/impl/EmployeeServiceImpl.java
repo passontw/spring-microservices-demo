@@ -1,12 +1,8 @@
 package springmicroservicesdemo.employeeservice.service.impl;
 
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
-import io.github.resilience4j.retry.annotation.Retry;
 import lombok.AllArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
-import org.springframework.web.reactive.function.client.WebClient;
 import springmicroservicesdemo.employeeservice.dto.APIResponseDto;
 import springmicroservicesdemo.employeeservice.dto.DepartmentDto;
 import springmicroservicesdemo.employeeservice.dto.EmployeeDto;
@@ -14,7 +10,7 @@ import springmicroservicesdemo.employeeservice.entity.Employee;
 import springmicroservicesdemo.employeeservice.exception.ResourceNotFoundException;
 import springmicroservicesdemo.employeeservice.mapper.AutoEmployeeMapper;
 import springmicroservicesdemo.employeeservice.repository.EmployeeRepository;
-import springmicroservicesdemo.employeeservice.service.APIClient;
+import springmicroservicesdemo.employeeservice.service.DepartmentAPIClient;
 import springmicroservicesdemo.employeeservice.service.EmployeeService;
 
 @Service
@@ -25,7 +21,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 //    private RestTemplate restTemplate;
     //private WebClient webClient;
-    private APIClient apiClient;
+    private DepartmentAPIClient departmentAPIClient;
 
     @Override
     public EmployeeDto saveEmployee(EmployeeDto employeeDto) {
@@ -45,10 +41,10 @@ public class EmployeeServiceImpl implements EmployeeService {
 
         EmployeeDto employeeDto = AutoEmployeeMapper.MAPPER.mapEmployeeToEmployeeDto(employee);
 
-//        DepartmentDto departmentDto = apiClient.getDepartment(employee.getDepartmentCode());
+        DepartmentDto departmentDto = departmentAPIClient.getDepartment(employee.getDepartmentCode());
         APIResponseDto apiResponseDto = new APIResponseDto();
         apiResponseDto.setEmployee(employeeDto);
-        apiResponseDto.setDepartment(null);
+        apiResponseDto.setDepartment(departmentDto);
 
         return apiResponseDto;
     }

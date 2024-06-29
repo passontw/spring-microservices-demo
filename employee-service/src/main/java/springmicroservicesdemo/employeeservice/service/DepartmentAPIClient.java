@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import springmicroservicesdemo.employeeservice.dto.DepartmentDto;
 
 @FeignClient(name = "DEPARTMENT-SERVICE")
-public interface APIClient {
+public interface DepartmentAPIClient {
     @GetMapping("api/departments/{departmentCode}")
     public DepartmentDto getDepartment(@PathVariable String departmentCode);
 }
