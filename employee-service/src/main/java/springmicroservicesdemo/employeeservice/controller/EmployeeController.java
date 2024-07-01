@@ -8,6 +8,7 @@ import springmicroservicesdemo.employeeservice.dto.APIResponseDto;
 import springmicroservicesdemo.employeeservice.dto.EmployeeDto;
 import springmicroservicesdemo.employeeservice.service.EmployeeService;
 
+@CrossOrigin
 @RestController
 @RequestMapping("api/employees")
 @AllArgsConstructor
