@@ -22,6 +22,7 @@ public class EmployeeController {
         return new ResponseEntity<EmployeeDto>(savedEmployeeDto, HttpStatus.CREATED);
     }
 
+    @CrossOrigin
     @GetMapping("{employeeId}")
     public ResponseEntity<APIResponseDto> getEmployee(@PathVariable Long employeeId) {
         APIResponseDto apiResponseDto  = employeeService.getEmployeeById(employeeId);
