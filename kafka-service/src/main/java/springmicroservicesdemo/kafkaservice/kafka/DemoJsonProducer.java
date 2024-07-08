@@ -22,6 +22,8 @@ public class DemoJsonProducer {
     private KafkaTemplate<String, String> kafkaTemplate;
 
     public void sendMessage(TaskPayload taskPayload) {
+        LOGGER.info(String.format("Json message recived -> %s", taskPayload.toString()));
+
         Message<TaskPayload> message = MessageBuilder
                 .withPayload(taskPayload)
                 .setHeader(KafkaHeaders.TOPIC, demoTopicName)
