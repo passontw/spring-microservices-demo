@@ -1,0 +1,9 @@
+{
+  "name": "service-registry",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/service-registry-service/src",
+  "tags": [],
+  "implicitDependencies": [
+    "service-registry"
+  ]
+}
