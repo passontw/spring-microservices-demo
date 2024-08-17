@@ -65,3 +65,5 @@ yarn-error.log*
 kafka-cluster-docker-compose/kafka-*
 kafka-cluster-docker-compose/zoo-*
 kafka-cluster-docker-compose/zookeeper-*
+
+standalone-logs
